@@ -10,3 +10,26 @@ for i in range(0,numberOfItems):
     allitems.remove(item)
     itemsChosen.append(item)
 print(itemsChosen)
+flasecount = 0
+truecount = 0
+for i in range(0,len(itemsChosen)-1):
+    playitem = itemsChosen[random.randint(0,len(itemsChosen)-1)]
+    TrueOrFalse = False
+    while TrueOrFalse == False:
+        answer = input("where does/do " + playitem + " go: ")
+        if answer == "compostable" and (playitem == "Apple core" or "Eggshells" or "Bread Crust" or "Garden clippings" or "Coffee grounds"):
+            truecount = truecount + 1
+            TrueOrFalse = True
+        elif answer == "recycling" and (playitem == "Plastic bottle" or "Aluminum can" or "Glass jar" or "Cardboard box" or "Metal can"):
+            truecount = truecount + 1
+            TrueOrFalse = True
+        elif answer == "hazardous waste" and (playitem == "Batteries" or "Broken light bulb" or "Paint can" or "Electronics" or "Aerosol can"):
+            truecount = truecount + 1
+            TrueOrFalse = True
+        elif answer == "general waste" and (playitem == "Chip bag" or "Chewing gum" or "Clothing tags" or "Broken ceramic plate" or "Cigarette butt"):
+            truecount = truecount + 1
+            TrueOrFalse = True
+        else:
+            TrueOrFalse = True
+            falsecount = flasecount + 1
+            print("Number of false is", falsecount)
