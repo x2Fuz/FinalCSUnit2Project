@@ -1,20 +1,21 @@
 import random
-difficulty = input("Would you like to try the harder version, you are not allowed to make a mistake? (yes or no): ")
+difficulty = input("Would you like to try the harder version, you are not allowed to make a mistake? (yes or no): ") # determins the difficulty of the game (harder difficulty doesn't allow mistakes)
 allitems = ["Plastic bottle", "Aluminum can", "Glass jar", "Cardboard box", "Metal can", "Apple core", "Eggshells", "Bread crust", "Garden clippings", "Coffee grounds", "Batteries", "Broken light bulb", "Paint can", "Electronics", "Aerosol can", "Chip bag", "Chewing gum", "Clothing tags", "Broken ceramic plate", "Cigarette butt"]
+# the list above is the list of all items that can be choosed from
 
 numberOfItems = 0
-while numberOfItems < 1 or numberOfItems > 20:
+while numberOfItems < 1 or numberOfItems > 20: # prevents user from entering a negative number or a number greater than 20
     numberOfItems = int(input("Enter the number of trash items you would like to sort (1-20): "))
 
 itemsChosen = []
 itemcount = 0
 correct = True
-for i in range(0,numberOfItems):
+for i in range(0,numberOfItems): # this will randomly add items into the play list, and it is repeated for the amount of items the user chose to have
+# this is in order to have more variability in the game
     item = allitems[random.randint(0,19-itemcount)]
     itemcount = itemcount + 1
     allitems.remove(item)
     itemsChosen.append(item)
-print(itemsChosen)
 falsecount = 0
 truecount = 0
 
@@ -28,7 +29,7 @@ if difficulty == "yes":
             itemsChosen.pop(0)
 
             if answer == "compostable" and (
-                    playitem == "Apple core" or "Eggshells" or "Bread Crust" or "Garden clippings" or "Coffee grounds"):
+                    playitem == "Apple core" or "Eggshells" or "Bread Crust" or "Garden clippings" or "Coffee grounds"): # this pretty much checks if the answer is correct by match answer to play item
                 truecount = truecount + 1
                 print("Number of true is", truecount)
                 print("Number of false is", falsecount)
@@ -55,12 +56,12 @@ if difficulty == "yes":
                 print("Number of false is", falsecount)
 
                 correct = False
-            if correct == False:
+            if correct == False: # this is what makes it so you are not allowed to lose in the harder difficulty of the game.
                 print("Whoops you lost!")
                 exit()
 
 
-if difficulty == "no":
+if difficulty != "yes": # this is so if the user doesn't input "yes" or "no" when they are asked difficulty, if automatically goes to the easy difficulty
     for i in range(0, len(itemsChosen)):
         playitem = itemsChosen[0]
 
@@ -68,7 +69,7 @@ if difficulty == "no":
         itemsChosen.pop(0)
 
         if answer == "compostable" and (
-                playitem == "Apple core" or "Eggshells" or "Bread Crust" or "Garden clippings" or "Coffee grounds"):
+                playitem == "Apple core" or "Eggshells" or "Bread Crust" or "Garden clippings" or "Coffee grounds"): # same process as before where it matches answer with play item and if they match the answer is marked correct
             truecount = truecount + 1
             print("Number of true is", truecount)
             print("Number of false is", falsecount)
